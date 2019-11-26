@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MARS_ROVER_SOLUTION.Services
+namespace MARS_ROVER.Services
 {
     public class DateService
     {

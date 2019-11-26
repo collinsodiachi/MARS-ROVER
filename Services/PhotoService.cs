@@ -1,23 +1,29 @@
 using System;
 using System.Collections.Generic;
-using MARS_ROVER_SOLUTION.Client;
-using MARS_ROVER_SOLUTION.Model;
+using System.Threading.Tasks;
+using MARS_ROVER.MarsRoverClients;
+using MARS_ROVER.Model;
 
-namespace MARS_ROVER_SOLUTION.Services
+
+namespace MARS_ROVER.Services
 {
     public class PhotoService
     {
         private static string IMAGE_CACHE_PATH ="/temp/";
 
-        MarsRoverClient marsRoverClient;
+        MarsRoverHttpClient marsRoverClient;
 
-        public List<PhotoList> PhotoList(string name, string date) {
+        public Task<PhotoList> GetPhotoList(string name, string date) {
             //Just a placeholder
-            List<PhotoList> photos = new List<PhotoList>();
-            return photos;
+            return marsRoverClient.GetPhotoList();
         }
-        public void GetPhoto(string url){ 
-            Console.WriteLine("Expected to return image file");
-        }
+        // public void GetPhoto(string url){ 
+        //     //create a sha
+        //     //gets the folder path and appends sha to it
+        //     //creates a file variable: File image
+        //     //Looks for file in image cache first
+        //     //If file is not found then get it from API
+        // }
+        
     }
 }

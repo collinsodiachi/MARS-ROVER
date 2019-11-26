@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using MARS_ROVER_SOLUTION.Client;
-using MARS_ROVER_SOLUTION.Model;
+using System.Threading.Tasks;
+using MARS_ROVER.MarsRoverClients;
+using MARS_ROVER.Model;
 
-namespace MARS_ROVER_SOLUTION.Services
+namespace MARS_ROVER.Services
 {
     public class RoverService
     {
-        MarsRoverClient marsRoverClient;
-        public List<RoverList> GetRoverList (){
-            Console.WriteLine("Expected to return a photolist");
-            List<RoverList> rovers = new List<RoverList>();
-            return rovers;
-         }
+        MarsRoverHttpClient _marsRoverClient;
+        public Task<RoverList> GetRoverList (){
+            return _marsRoverClient.GetRoverList();
+        }
     }
 }
