@@ -44,6 +44,7 @@ namespace MARS_ROVER.Controllers
 
         
         // [Route("~/api/GetPhoto")] 
+        
         // [HttpGet]
         // public async Task<Stream> GetPhoto(string url) 
         // {  
