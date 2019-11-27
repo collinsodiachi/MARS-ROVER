@@ -9,19 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class NasaImageComponent implements OnInit {
   nasaImages: any[];
   imageFound: boolean = false;
+  searching: boolean = false;
   constructor(private  _nasaImageService: NasaImageService) { }
   getImages(){
+    this.searching = true;
     return this._nasaImageService.getImage().subscribe(
       data =>this.handleSuccess(data),
       error => this.handleError(error),
-      () => console.log("Request Complete!")
+      () => this.searching = false
     )
   }
 
   handleSuccess(data){
     this.imageFound = true;
     this.nasaImages = data.photos;
-    console.log(data.photos);
   }
 
   handleError(error){

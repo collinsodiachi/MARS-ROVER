@@ -7,6 +7,7 @@ using MARS_ROVER.Model;
 
 namespace MARS_ROVER.MarsRoverClients
 {
+   
     public class MarsRoverHttpClient
     {
         private static String REST_URI =  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=";
@@ -30,9 +31,9 @@ namespace MARS_ROVER.MarsRoverClients
 
         public async Task<RoverList> GetRoverList()
         {
-           
+        
             var queryString = $"https://api.nasa.gov/mars-photos/api/v1/rovers?earth_date=2015-6-3&api_key=edLAgagb3KFP1QN4hIlZkMKvFGIjihEqZ89bAcFE";
-           
+        
             var request = new HttpRequestMessage(HttpMethod.Get, queryString);
 
             var response =  await _httpClient.SendAsync(request);
@@ -55,14 +56,16 @@ namespace MARS_ROVER.MarsRoverClients
             : null;
         }
 
+       
+
         // public async Task<Stream> GetPhoto(string url){
 
         //     var queryString = $"https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&api_key=edLAgagb3KFP1QN4hIlZkMKvFGIjihEqZ89bAcFE";
-            
+
         //     var request = new HttpRequestMessage(HttpMethod.Get, queryString);
 
         //     var response =  await _httpClient.SendAsync(request);
-            
+
 
         //     Stream contentStream = await response.Content.ReadAsStreamAsync();
 

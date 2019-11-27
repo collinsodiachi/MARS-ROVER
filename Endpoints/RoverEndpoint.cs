@@ -7,7 +7,7 @@ namespace MARS_ROVER.Endpoints
 {
     public class RoverEndpoint
     {
-        RoverService roverService;
+        // RoverService roverService;
 
         // public List<RoverList> GetRovers(){
         //     return roverService.GetRoverList();
