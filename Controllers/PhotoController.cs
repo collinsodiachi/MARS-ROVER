@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MARS_ROVER.MarsRoverClients;
 using MARS_ROVER.Model;
+using MARS_ROVER.Services;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -23,10 +24,9 @@ namespace MARS_ROVER.Controllers
         [Route("~/api/GetAllPhoto/{date}")] 
         [HttpGet]
         public async Task<ActionResult<PhotoList>> GetPhotoList(string date) 
-        {  
+        { 
             var photoList = await _marsRoverClient.GetPhotoList(date);
             return Ok(photoList);
-        
         }
 
         // [Route("~/api/getphoto")] 
