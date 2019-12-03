@@ -11,6 +11,8 @@ import { NasaImageComponent } from './nasa-image/nasa-image.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppRoutingModule } from './app-routing.module';
+
 @NgModule({
   declarations: [
     
@@ -23,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MatCardModule,
     MatProgressBarModule,
-    MatButtonModule
+    MatButtonModule,
+    AppRoutingModule
    
 
   ],

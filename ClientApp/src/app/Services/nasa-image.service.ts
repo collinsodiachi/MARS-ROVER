@@ -7,12 +7,15 @@ import 'rxjs/add/operator/map';
   providedIn: 'root'
 })
 export class NasaImageService {
-  private BASE_URL: string = "https://localhost:5001/";
+  private BASE_URL: string = 'https://localhost:5001/';
   private query: string;
 
   constructor(private _http: HttpClient) { }
 
-  getImage(){
-    return this._http.get(this.BASE_URL + "api/getallphoto").map(res=>res);
+  getImages(date){
+    return this._http.get(this.BASE_URL + 'api/getallphoto/'+ date).map(res=>res);
+  }
+  getAllDates(){
+    return this._http.get(this.BASE_URL + 'api/getalldate').map(res=>res);
   }
 }

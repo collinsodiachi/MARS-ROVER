@@ -8,27 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NasaImageComponent implements OnInit {
   nasaImages: any[];
+  nasaDates: any[];
   imageFound: boolean = false;
   searching: boolean = false;
   constructor(private  _nasaImageService: NasaImageService) { }
-  getImages(){
+
+  getImages(date){
     this.searching = true;
-    return this._nasaImageService.getImage().subscribe(
+    return this._nasaImageService.getImages(date).subscribe(
       data =>this.handleSuccess(data),
       error => this.handleError(error),
       () => this.searching = false
     )
+  }
+  getDates(){
+    return this._nasaImageService.getAllDates().subscribe(
+      data =>this.getDatesSuccess(data),
+      error => this.handleError(error),
+    )
+  }
+  getDatesSuccess(data){
+    this.nasaDates = data;
   }
 
   handleSuccess(data){
     this.imageFound = true;
     this.nasaImages = data.photos;
   }
-
   handleError(error){
     console.log(error);
   }
   ngOnInit() {
+    this.getDates();
   }
 
 }

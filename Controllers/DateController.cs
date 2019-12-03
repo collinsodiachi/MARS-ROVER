@@ -14,10 +14,13 @@ namespace MARS_ROVER.Controllers
     {
         [Route("~/api/GetAllDate")] 
         [HttpGet]
-        public  ActionResult<List<Date>> GetAllDate(){
-            DateService dates = new DateService();
-            var DateTextFile = dates.GetAllDates();
-            return Ok(DateTextFile);
+        public  ActionResult<List<String>> GetAllDate(){
+            DateService dateService = new DateService();
+            List<String> dates = new List<String>();
+            var AllDatesFromTextFile = dateService.GetAllDates();
+            foreach(string date in AllDatesFromTextFile)
+                dates.Add(dateService.ParseDates(date)); 
+            return Ok(dates);
         }
     }
 }
