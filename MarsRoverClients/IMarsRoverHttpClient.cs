@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using MARS_ROVER.Model;
 using System.IO;
+using System.Collections.Generic;
 
 namespace MARS_ROVER.MarsRoverClients
 {
@@ -9,7 +10,7 @@ namespace MARS_ROVER.MarsRoverClients
     {
          Task<PhotoList> GetPhotoList(String date);
          Task<RoverList> GetRoverList();
-        //  Task<FileStream> GetPhoto(String url);
+        Task<String> GetPhoto(String url);
         
     }
 }

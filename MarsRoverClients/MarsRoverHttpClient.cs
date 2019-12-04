@@ -58,6 +58,14 @@ namespace MARS_ROVER.MarsRoverClients
             : null;
         }
 
+        public async Task<String> GetPhoto(String url)
+        {
+
+            string responseBody = await  _httpClient.GetStringAsync(url);
+            Console.WriteLine(responseBody);
+            return responseBody;
+        }
+
 
         // public async Task<FileStream> GetPhoto(String url)
         // {

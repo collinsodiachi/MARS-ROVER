@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,7 +26,13 @@ namespace MARS_ROVER.Controllers
         [HttpGet]
         public async Task<ActionResult<PhotoList>> GetPhotoList(string date) 
         { 
+            
             var photoList = await _marsRoverClient.GetPhotoList(date);
+            Console.WriteLine(photoList);
+           
+            foreach(var pp in photoList.Photos)
+               await _marsRoverClient.GetPhoto(pp.Img_Src);
+
             return Ok(photoList);
         }
 

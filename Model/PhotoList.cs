@@ -4,6 +4,11 @@ namespace MARS_ROVER.Model
 {
     public class PhotoList
     {
-        public IList<Photo> Photos{ get; set; }
+
+        public List<Photo> Photos{ get; set; }
+        public PhotoList(List<Photo> photos)
+        {
+            Photos = photos;
+        }
     }
 }

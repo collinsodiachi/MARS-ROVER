@@ -15,10 +15,10 @@ namespace MARS_ROVER.Services
         
         private static string IMAGE_CACHE_PATH = Path.GetTempPath(); 
 
-        public Task<PhotoList> GetPhotoList(String date) 
-        {
-            return _marsRoverClient.GetPhotoList(date);
-        }
+        // public Task<PhotoList> GetPhotoList(String date) 
+        // {
+        //     return _marsRoverClient.GetPhotoList(date);
+        // }
         public void GetPhoto(){ 
             Console.WriteLine("Hello from services");
             //create a sha
@@ -27,6 +27,15 @@ namespace MARS_ROVER.Services
             //Looks for file in image cache first
             //If file is not found then get it from API
         }
+
+        //  public async void SavePhoto(List<Photo> photos){ 
+        //     PhotoList newPhotoList = new PhotoList();
+        //     foreach(Photo photo in photos)
+        //         if(photos.Count > 0)
+        //             var image = await _marsRoverClient.GetPhoto(photo.Img_Src)
+                
+            
+        // }
         
     }
 }
