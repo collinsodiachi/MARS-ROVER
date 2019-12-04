@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -60,57 +61,31 @@ namespace MARS_ROVER.MarsRoverClients
 
         public async Task<String> GetPhoto(String url)
         {
+            Uri uri = new Uri(url);
+            string filename = Path.GetFileName(uri.LocalPath);
+            // Send asynchronous request
+            await _httpClient.GetAsync(url).ContinueWith(
+            (requestTask) =>
+            {
+                // Get HTTP response from completed task.
+                HttpResponseMessage response = requestTask.Result;
+                // Check that response was successful or throw exception
+                response.EnsureSuccessStatusCode();
 
+                // Read content into buffer
+                // The content can now be read multiple times using any ReadAs* extension method
+                response.Content.LoadIntoBufferAsync();
+
+                // Read response asynchronously and save to file
+                response.Content.ReadAsFileAsync(filename, true);
+            
+            });
+            // var response =  await _httpClient.SendAsync(request);
             string responseBody = await  _httpClient.GetStringAsync(url);
-            Console.WriteLine(responseBody);
+            // Console.WriteLine(stream);
             return responseBody;
+
+            
         }
-
-
-        // public async Task<FileStream> GetPhoto(String url)
-        // {
-        //     HttpResponseMessage response =  await _httpClient.GetAsync(url);
-        //     byte[] content = await response.Content.ReadAsByteArrayAsync();
-
-        //     return File(content, "image/png");
-           
-        // }
-
-        //  public async Task<FileStream> GetPhoto2(String url)
-        // {
-             
-        // }
-
-
-        // public HttpResponseMessage GetPhoto(String url)
-        // {
-        //     HttpResponseMessage response = new HttpResponseMessage();
-        //     response.Content = new StreamContent(new FileStream(url)); // this file stream will be closed by lower layers of web api for you once the response is completed.
-        //     response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
-
-        //     return response;
-        // }
-
-
-
-        // public async Task<Stream> GetPhoto(string url){
-
-        //     var queryString = $"https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=2015-6-3&api_key=edLAgagb3KFP1QN4hIlZkMKvFGIjihEqZ89bAcFE";
-
-        //     var request = new HttpRequestMessage(HttpMethod.Get, queryString);
-
-        //     var response =  await _httpClient.SendAsync(request);
-
-
-        //     Stream contentStream = await response.Content.ReadAsStreamAsync();
-
-        //     var stream = new FileStream(url, FileMode.Open);
-
-        //         await contentStream.CopyToAsync(stream);
-        //     return contentStream;
-
-        // }
     }
 }
-
-

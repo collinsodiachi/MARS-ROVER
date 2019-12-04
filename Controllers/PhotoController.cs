@@ -16,8 +16,8 @@ namespace MARS_ROVER.Controllers
     [Route("api/[controller]")]
     public class PhotoController: ControllerBase
     {
-         private readonly IMarsRoverHttpClient _marsRoverClient;
-         public PhotoController(IMarsRoverHttpClient marsRoverClient)
+        private readonly IMarsRoverHttpClient _marsRoverClient;
+        public PhotoController(IMarsRoverHttpClient marsRoverClient)
         {
             _marsRoverClient = marsRoverClient;
         }
@@ -26,24 +26,13 @@ namespace MARS_ROVER.Controllers
         [HttpGet]
         public async Task<ActionResult<PhotoList>> GetPhotoList(string date) 
         { 
-            
             var photoList = await _marsRoverClient.GetPhotoList(date);
-            Console.WriteLine(photoList);
-           
+           //Saving Photo
             foreach(var pp in photoList.Photos)
-               await _marsRoverClient.GetPhoto(pp.Img_Src);
+                await _marsRoverClient.GetPhoto(pp.Img_Src);
 
             return Ok(photoList);
         }
-
-        // [Route("~/api/getphoto")] 
-        // [HttpGet]
-        // public async Task<IActionResult> GetPhoto() 
-        // {  
-        //     var photo = await _marsRoverClient.GetPhoto("http://mars.nasa.gov/mer/gallery/all/1/p/4037/1P486568465EFFCNJDP2407L2M1-BR.JPG");
-        //     var image = System.IO.File.OpenRead(photo);
-        //     return File(image, "image/jpeg");
-        // }
     }
 }
 
