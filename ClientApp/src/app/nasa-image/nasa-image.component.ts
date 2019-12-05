@@ -11,20 +11,24 @@ export class NasaImageComponent implements OnInit {
   nasaDates: any[];
   imageFound: boolean = false;
   searching: boolean = false;
+  errorMessage;
+
   constructor(private  _nasaImageService: NasaImageService) { }
 
   getImages(date){
+    if(this.nasaImages || this.errorMessage)
+        this.nasaImages = this.errorMessage =null;
     this.searching = true;
     return this._nasaImageService.getImages(date).subscribe(
       data =>this.handleSuccess(data),
-      error => this.handleError(error),
+      error => this.errorMessage = error,
       () => this.searching = false
     )
   }
   getDates(){
     return this._nasaImageService.getAllDates().subscribe(
       data =>this.getDatesSuccess(data),
-      error => this.handleError(error),
+      error => this.errorMessage = error
     )
   }
   getDatesSuccess(data){
@@ -32,8 +36,14 @@ export class NasaImageComponent implements OnInit {
   }
 
   handleSuccess(data){
-    this.imageFound = true;
-    this.nasaImages = data.photos;
+    if(data == null)
+    {
+      this.errorMessage = "No images found, Invalid date formate"
+    }else{
+      this.imageFound = true;
+      this.nasaImages = data.photos;
+    }
+    
   }
   handleError(error){
     console.log(error);

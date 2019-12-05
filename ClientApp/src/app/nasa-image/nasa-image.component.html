@@ -6,14 +6,17 @@
             <button class="ml-2" mat-raised-button *ngFor="let date of nasaDates" (click)="getImages(date)">{{date}}</button>
         </div>
     </div>
-    <div *ngIf="searching">
+    <div *ngIf="searching && !errorMessage">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div *ngIf="errorMessage">
+        <h1>{{errorMessage}}</h1>
     </div>
     <div class="row" >
         <div *ngFor="let image of nasaImages" >
             <div class="col-md-4">
                 <mat-card class="example-card" class="image-container">
-                    <img mat-card-image src="{{image.img_Src}}" alt="Nasa Image">
+                    <img mat-card-image src="{{image.img_Src}}" alt="Nasa Image" width="200" height="160">
                     <mat-card-content>
                         <p>ID: {{image.id}}</p>
                         <p>Date: {{image.earth_Date}}</p>

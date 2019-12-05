@@ -8,10 +8,11 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { NasaImageComponent } from './nasa-image/nasa-image.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AppInterceptorService } from './Services/app-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { AppRoutingModule } from './app-routing.module';
 
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptorService,
+      multi: true
+    },
     NasaImageService
   ],
   bootstrap: [AppComponent]
