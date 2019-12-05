@@ -13,7 +13,7 @@ namespace MARS_ROVER.MarsRoverClients
    
     public class MarsRoverHttpClient: IMarsRoverHttpClient
     {
-        private static String REST_URI =  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=";
+
         private static String API_KEY = "edLAgagb3KFP1QN4hIlZkMKvFGIjihEqZ89bAcFE";
         private static String API_KEY_PARAM_NAME = "api_key";
         private static String EARTH_DATE_PARAM_NAME = "earth_date";
@@ -30,23 +30,7 @@ namespace MARS_ROVER.MarsRoverClients
             _httpClient = httpClient;
         }
 
-
-
-        public async Task<RoverList> GetRoverList()
-        {
         
-            var queryString = "https://api.nasa.gov/mars-photos/api/v1/rovers?earth_date=2015-6-3&api_key=edLAgagb3KFP1QN4hIlZkMKvFGIjihEqZ89bAcFE";
-        
-            var request = new HttpRequestMessage(HttpMethod.Get, queryString);
-
-            var response =  await _httpClient.SendAsync(request);
-
-            return response.IsSuccessStatusCode
-            ? await response.Content.ReadAsAsync<RoverList>()
-            : null;
-        }
-
-        //add this arg to methode later string name, string date
         public async Task<PhotoList> GetPhotoList(String date)
         {
             var queryString = $"rovers/opportunity/photos?{EARTH_DATE_PARAM_NAME}={date}&{API_KEY_PARAM_NAME}={API_KEY}";
@@ -59,7 +43,7 @@ namespace MARS_ROVER.MarsRoverClients
             : null;
         }
 
-        public async Task<String> GetPhoto(String url)
+        public async void SavePhoto(String url)
         {
             Uri uri = new Uri(url);
             string filename = Path.GetFileName(uri.LocalPath);
@@ -80,12 +64,7 @@ namespace MARS_ROVER.MarsRoverClients
                 response.Content.ReadAsFileAsync(filename, true);
             
             });
-            // var response =  await _httpClient.SendAsync(request);
-            string responseBody = await  _httpClient.GetStringAsync(url);
-            // Console.WriteLine(stream);
-            return responseBody;
-
-            
+           
         }
     }
 }

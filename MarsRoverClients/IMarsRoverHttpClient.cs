@@ -9,8 +9,7 @@ namespace MARS_ROVER.MarsRoverClients
     public interface IMarsRoverHttpClient
     {
          Task<PhotoList> GetPhotoList(String date);
-         Task<RoverList> GetRoverList();
-        Task<String> GetPhoto(String url);
+        void SavePhoto(String url);
         
     }
 }

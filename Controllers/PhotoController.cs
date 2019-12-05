@@ -1,13 +1,9 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using MARS_ROVER.MarsRoverClients;
 using MARS_ROVER.Model;
 using MARS_ROVER.Services;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MARS_ROVER.Controllers
 {
@@ -26,12 +22,17 @@ namespace MARS_ROVER.Controllers
         [HttpGet]
         public async Task<ActionResult<PhotoList>> GetPhotoList(string date) 
         { 
-            var photoList = await _marsRoverClient.GetPhotoList(date);
-           //Saving Photo
-            foreach(var pp in photoList.Photos)
-                await _marsRoverClient.GetPhoto(pp.Img_Src);
+            try{
+                var photoList = await _marsRoverClient.GetPhotoList(date);
 
-            return Ok(photoList);
+                foreach(var photo in photoList.Photos)
+                _marsRoverClient.SavePhoto(photo.Img_Src);
+                 return Ok(photoList);
+            }
+            catch
+            {
+                return Ok();
+            }
         }
     }
 }
