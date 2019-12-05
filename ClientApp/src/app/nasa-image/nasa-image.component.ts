@@ -21,7 +21,7 @@ export class NasaImageComponent implements OnInit {
     this.searching = true;
     return this._nasaImageService.getImages(date).subscribe(
       data =>this.handleSuccess(data),
-      error => this.errorMessage = error,
+      error => this.handleError(error),
       () => this.searching = false
     )
   }
@@ -36,9 +36,9 @@ export class NasaImageComponent implements OnInit {
   }
 
   handleSuccess(data){
-    if(data == null)
+    if(data == "Not Found")
     {
-      this.errorMessage = "No images found, Invalid date formate"
+      this.errorMessage = "No Image Found"
     }else{
       this.imageFound = true;
       this.nasaImages = data.photos;
@@ -46,7 +46,8 @@ export class NasaImageComponent implements OnInit {
     
   }
   handleError(error){
-    console.log(error);
+    if(error == "Bad Request")
+      this.errorMessage = "Invalid Date Formate"
   }
   ngOnInit() {
     this.getDates();
