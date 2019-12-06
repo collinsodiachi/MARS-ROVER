@@ -17,12 +17,12 @@ export class NasaImageService {
   constructor(private _http: HttpClient) { }
 
   getImages(date){
-    return this._http.get(this.BASE_URL + 'api/getallphoto/'+ date)
+    return this._http.get(this.BASE_URL + 'api/rover-photos/'+ date)
     .map(res=>res);
   }
 
   getAllDates(){
-    return this._http.get(this.BASE_URL + 'api/getalldate')
+    return this._http.get(this.BASE_URL + 'api/rover-photos/dates')
     .map(res=>res);
   }
 }
