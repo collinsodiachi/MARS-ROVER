@@ -18,8 +18,10 @@
                 <mat-card class="example-card" class="image-container">
                     <img mat-card-image src="{{image.img_Src}}" alt="Nasa Image" width="200" height="160">
                     <mat-card-content>
-                        <p>ID: {{image.id}}</p>
-                        <p>Date: {{image.earth_Date}}</p>
+                        <p><strong>ID:</strong> {{image.id}}</p>
+                        <p><strong>Name:</strong>  {{image.camera.full_Name}}</p>
+                        <p><strong>Rover Name:</strong> {{image.rover.name}}</p>
+                        <p><strong>Date:</strong> {{image.earth_Date}}</p>
                     </mat-card-content>
                 </mat-card>
             </div>

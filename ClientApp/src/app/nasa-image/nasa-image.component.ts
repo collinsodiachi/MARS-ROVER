@@ -12,6 +12,7 @@ export class NasaImageComponent implements OnInit {
   imageFound: boolean = false;
   searching: boolean = false;
   errorMessage;
+  currentDate : string;
 
   constructor(private  _nasaImageService: NasaImageService) { }
 
@@ -19,6 +20,7 @@ export class NasaImageComponent implements OnInit {
     if(this.nasaImages || this.errorMessage)
         this.nasaImages = this.errorMessage =null;
     this.searching = true;
+    this.currentDate = date;
     return this._nasaImageService.getImages(date).subscribe(
       data =>this.handleSuccess(data),
       error => this.handleError(error),
@@ -34,6 +36,7 @@ export class NasaImageComponent implements OnInit {
   getDatesSuccess(data){
     this.nasaDates = data;
   }
+ 
 
   handleSuccess(data){
     if(data == "Not Found")
@@ -47,7 +50,7 @@ export class NasaImageComponent implements OnInit {
   }
   handleError(error){
     if(error == "Bad Request")
-      this.errorMessage = "Invalid Date Formate"
+      this.errorMessage = "Invalid Date Formate" +" "+ this.currentDate;
   }
   ngOnInit() {
     this.getDates();
