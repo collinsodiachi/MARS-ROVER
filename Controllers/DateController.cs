@@ -16,7 +16,7 @@ namespace MARS_ROVER.Controllers
             _logger = logger;
         }
 
-        [Route("~/api/GetAllDate")] 
+        [Route("~/api/rover-photos/dates")] 
         [HttpGet]
         public  ActionResult<List<String>> GetAllDate()
         {

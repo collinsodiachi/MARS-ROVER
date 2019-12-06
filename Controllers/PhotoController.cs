@@ -1,8 +1,6 @@
-using System;
 using System.Threading.Tasks;
 using MARS_ROVER.MarsRoverClients;
 using MARS_ROVER.Model;
-using MARS_ROVER.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -21,7 +19,7 @@ namespace MARS_ROVER.Controllers
             _logger = logger;
         }
 
-        [Route("~/api/GetAllPhoto/{date}")] 
+        [Route("~/api/rover-photos/{date}")] 
         [HttpGet]
         public async Task<ActionResult<PhotoList>> GetPhotoList(string date) 
         { 
