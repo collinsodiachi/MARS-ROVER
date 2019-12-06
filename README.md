@@ -15,8 +15,8 @@ Mars Rover photos are processed and saved locally to the local TEMP folder
 see path: C:\Users\users-name\AppData\Local\Temp. Photos saves at each request made 
 before rendering to the View.
 
-On the client side side, HttpClient  is used to call the  Mars-rover-app API
-Data is consumed from service directory to nasa-image component to presend image at the view
+On the client side side, HttpClient  is used to call the  Mars-rover-app API. 
+Data from Angular service directory is consumed at nasa-image component and image is presented at the view.
 
 Know possible Areas of limitations that can be Improved
 1)  Since unit testing was a bonus, I did not bother to include it now because time is also a factor
@@ -27,6 +27,8 @@ custom middleware to catch every error that is thrown and handled properly.
 
 3) This application calls the Mars Rover API at every request. In the future I will be implement in the app to look for already existing photos in the local directory before sending request to the API.
 This will save cost, in time and http request
+
+4) Routing can be implemented properly on the client side in the future 
 
 Building App Locally
 Install Node.js 12.x
