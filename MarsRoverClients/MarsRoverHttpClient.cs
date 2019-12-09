@@ -33,7 +33,7 @@ namespace MARS_ROVER.MarsRoverClients
         
         public async Task<PhotoList> GetPhotoList(String date)
         {
-            var queryString = $"rovers/opportunity/photos?{EARTH_DATE_PARAM_NAME}={date}&{API_KEY_PARAM_NAME}={API_KEY}";
+            var queryString = $"rovers/curiosity/photos?{EARTH_DATE_PARAM_NAME}={date}&{API_KEY_PARAM_NAME}={API_KEY}";
             var request = new HttpRequestMessage(HttpMethod.Get, queryString);
 
             var response =  await _httpClient.SendAsync(request);
