@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using MARS_ROVER.Services;
+using MARS_ROVER.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -20,7 +20,7 @@ namespace MARS_ROVER.Controllers
         [HttpGet]
         public  ActionResult<List<String>> GetAllDate()
         {
-            DateService dateService = new DateService();
+            DateHelper dateService = new DateHelper();
 
             List<String> dates = dateService.GetDates();
 

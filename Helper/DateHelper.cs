@@ -5,14 +5,14 @@ using System.IO;
 using System.Linq;
 
 
-namespace MARS_ROVER.Services
+namespace MARS_ROVER.Helper
 {
-    public class DateService
+    public class DateHelper
     {
         string dateInTextFile = Path.GetFileName("Date.txt");
         string[] pattern = {"MM/dd/yy","MMMM d, yyyy","MMM-dd-yyyy","MMMM dd, yyyy"};
         List<String> dates;
-        public DateService()
+        public DateHelper()
         {
             dates = new List<String>();
         }
