@@ -20,9 +20,9 @@ namespace MARS_ROVER.Controllers
         [HttpGet]
         public  ActionResult<List<String>> GetAllDate()
         {
-            DateHelper dateService = new DateHelper();
+            DateHelper dateHelper = new DateHelper();
 
-            List<String> dates = dateService.GetDates();
+            List<String> dates = dateHelper.GetDates();
 
             _logger.LogInformation("All dates is returned from text file as they are");
             
