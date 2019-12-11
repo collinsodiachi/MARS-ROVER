@@ -5,7 +5,7 @@ import { Injectable} from '@angular/core';
 
 abstract class HttpCache{
     abstract get(req: HttpRequest<any>): HttpResponse<any> | null;
-    abstract get(req: HttpRequest<any>, resp: HttpResponse<any>): void;
+    abstract get(req: HttpRequest<any>, res: HttpResponse<any>): void;
 
 }
 
@@ -14,8 +14,8 @@ export class HttpCacheService implements HttpCache{
     private cache = {};
 
 
-    put(req: HttpRequest<any>, resp: HttpResponse<any>):void {
-        this.cache[req.urlWithParams] = resp;
+    put(req: HttpRequest<any>, res: HttpResponse<any>):void {
+        this.cache[req.urlWithParams] = res;
     }
 
     get(req: HttpRequest<any>): HttpResponse<any> | null{

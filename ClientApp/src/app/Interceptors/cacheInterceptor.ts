@@ -10,11 +10,11 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor{
-    constructor(private cacheservice: HttpCacheService){}
+    constructor(private _cacheService: HttpCacheService){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         
-        const cachedResponse = this.cacheservice[req.urlWithParams]|| null;
+        const cachedResponse = this._cacheService[req.urlWithParams]|| null;
         
         if(cachedResponse){
             console.log("Response from Cache");
@@ -23,7 +23,7 @@ export class CacheInterceptor implements HttpInterceptor{
 
         return next.handle(req).do(event => {
             if(event instanceof HttpResponse){
-                this.cacheservice[req.urlWithParams] = event;
+                this._cacheService[req.urlWithParams] = event;
                 console.log("Response from Server");
             }
         })
