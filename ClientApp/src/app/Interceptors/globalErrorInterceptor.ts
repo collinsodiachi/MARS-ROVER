@@ -6,7 +6,7 @@ import { Observable, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AppInterceptorService implements HttpInterceptor{
+export class GlobalErrorInterceptor implements HttpInterceptor{
 
   constructor() { }
 
@@ -14,8 +14,7 @@ export class AppInterceptorService implements HttpInterceptor{
     return throwError(error.statusText || "Server Error");
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): 
-  Observable<HttpEvent<any>>{
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     return next.handle(req)
     .pipe(
       catchError(this.handleError)

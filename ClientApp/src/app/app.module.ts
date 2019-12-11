@@ -1,3 +1,5 @@
+import { CacheInterceptor } from './Interceptors/cacheInterceptor';
+import { HttpCacheService } from './Services/cache.service';
 import { NasaImageService } from './Services/nasa-image.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,7 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppInterceptorService } from './Services/app-interceptor.service';
+import { GlobalErrorInterceptor } from './Interceptors/globalErrorInterceptor';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,16 @@ import { AppInterceptorService } from './Services/app-interceptor.service';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AppInterceptorService,
+      useClass: GlobalErrorInterceptor,
       multi: true
     },
-    NasaImageService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true
+    },
+    NasaImageService,
+    HttpCacheService
   ],
   bootstrap: [AppComponent]
 })
